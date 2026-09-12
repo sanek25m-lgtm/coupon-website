@@ -156,3 +156,6 @@ html{scroll-behavior:smooth}body{margin:0;font:15px/1.5 -apple-system,"Segoe UI"
 /* === Toast улучшенный === */
 .tt{transition:all .3s ease;transform:translateY(60px);opacity:0}
 .tt.on{transform:translateY(0);opacity:1}
+
+/* Language labels remain accessible on narrow screens. */
+.lang{display:flex;flex-wrap:wrap;gap:3px;max-width:100%;}.lang button{white-space:nowrap;font-size:12px;min-height:32px}.language-status{font-size:12px;max-width:220px}.hdr-in{flex-wrap:wrap}.hr{flex-wrap:wrap;max-width:100%}

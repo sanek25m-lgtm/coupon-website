@@ -1,8 +1,8 @@
 (function(){
 var DATA=[], VIEW=[], PER=24, page=1, dataReady=false;
 var state={q:'',cat:'',type:'',sort:'rel',merchant:'',favorites:location.hash==='#fav'};
-var lang=localStorage.getItem('gl_lang')||(navigator.language||'ru').slice(0,2).toLowerCase();
-if(['ru','en','kz','tt','uz','zh'].indexOf(lang)<0)lang='ru';
+// Render canonical source copy; CouponI18n owns language across all pages.
+var lang='ru';
 /* Базовый путь текущей страницы: работает и на localhost, и на GitHub Pages в подпапке,
    и при открытии файла двойным кликом (file://). */
 var BASE = new URL('../', document.currentScript.src).pathname;
@@ -125,9 +125,9 @@ var UI = {
 function catName(cat) { if (!cat) return ''; var m = CATS[lang]; return (m && m[cat]) || cat; }
 function applyLang() {
     // Only interface controls are translated; the offer feed remains Russian.
-    document.documentElement.lang = 'ru';
+
     var d = UI[lang] || UI.ru;
-    document.querySelectorAll('.lang button').forEach(function (b) { b.classList.toggle('on', b.dataset.l === lang); });
+
     document.querySelectorAll('[data-i18n]').forEach(function (el) { var k = el.getAttribute('data-i18n'); if (d[k]) el.textContent = d[k]; });
     document.querySelectorAll('[data-i18n-ph]').forEach(function (el) { var k = el.getAttribute('data-i18n-ph'); if (d[k]) el.placeholder = d[k]; });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) { var k = el.getAttribute('data-i18n-aria'); if (d[k]) el.setAttribute('aria-label', d[k]); });
@@ -176,7 +176,9 @@ function apply(){
     if(!couponIsActive(c))return false;
     if(state.type==='code'&&!c.code)return false;
     if(state.type==='link'&&c.code)return false;
-    if(q&&(c.name+' '+c.desc+' '+c.merchant+' '+c.cat).toLowerCase().indexOf(q)<0)return false;
+    var haystack=c.name+' '+c.desc+' '+c.merchant+' '+c.cat;
+    if(window.CouponI18n)haystack+=' '+[c.name,c.desc,c.cat].map(function(value){return window.CouponI18n.translate(value||'')}).join(' ');
+    if(q&&haystack.toLowerCase().indexOf(q)<0)return false;
     return true;
   });
   VIEW.sort(function(a,b){
@@ -247,7 +249,7 @@ function renderExpireAlert(){
   var soon=DATA.filter(function(c){return fav.indexOf(c.id)>=0&&daysLeft(c.end)>0&&daysLeft(c.end)<=3});
   if(!soon.length)return;
   var el=document.createElement('div');el.className='expire-alert';
-  el.innerHTML='<span class="icon">🔔</span><span>В избранном истекает: '+soon.map(function(c){return esc(c.name).slice(0,30)+' ('+daysLeft(c.end)+' дн.)'}).join(', ')+'</span>';
+  el.innerHTML='<span class="icon">🔔</span><strong>Избранное</strong> <span>🔥 Истекает</span> '+soon.map(function(c){return '<span>'+esc(c.name)+'</span> <span>⏳ '+daysLeft(c.end)+' дн.</span>'}).join(', ');
   var grid=document.getElementById('grid');if(grid)grid.parentNode.insertBefore(el,grid);
 }
 
@@ -259,15 +261,15 @@ function storeHead(){
   if(document.body.dataset.staticPage)return;
   var list=DATA.filter(function(c){return c.merchant===state.merchant});
   var name=state.merchant||'';
-  var mt=document.getElementById('mtitle');if(mt)mt.textContent=(STORE_SEO_T[lang]||STORE_SEO_T.ru)+' — '+name;
+  var mt=document.getElementById('mtitle');if(mt)mt.innerHTML='<span>Акции без промокода</span> — <span translate="no">'+esc(name)+'</span>';
   var ms=document.getElementById('msub');
-  if(ms)ms.textContent=list.length+' купонов'+(list[0]&&list[0].cat?' · '+esc(catName(list[0].cat)):'');
+  if(ms)ms.innerHTML='<span>Найдено '+list.length+'</span>'+(list[0]&&list[0].cat?' · <span>'+esc(catName(list[0].cat))+'</span>':'');
   var lg=document.getElementById('mlogo');
   if(lg&&list[0]&&list[0].logo)lg.innerHTML='<img src="'+esc(list[0].logo)+'" alt="" onerror="this.remove()">';
   // --- SEO для страницы магазина ---
-  document.title=(STORE_SEO_T[lang]||STORE_SEO_T.ru)+' '+name+' — Купонатор';
+  document.title=(window.CouponI18n?window.CouponI18n.translate('Акции без промокода'):'Акции без промокода')+' — '+name+' — Kuponator';
   var md=document.querySelector('meta[name="description"]');
-  if(md)md.setAttribute('content','Купоны '+name+': '+list.length+' предложений. Условия и сроки по данным партнёрского фида.');
+  if(md)md.setAttribute('content',window.CouponI18n?window.CouponI18n.translate('Условия и сроки предоставлены партнёрским фидом. Перед оплатой проверьте применение скидки в корзине.'):'Условия и сроки предоставлены партнёрским фидом. Перед оплатой проверьте применение скидки в корзине.');
   var mc=document.querySelector('link[rel="canonical"]');
   if(!mc){mc=document.createElement('link');mc.rel='canonical';document.head.appendChild(mc);}
   mc.setAttribute('href',merchantUrl(name));
@@ -312,7 +314,7 @@ function boot(){
     if(up.get('s')){state.sort=up.get('s');document.querySelectorAll('#sortChips button').forEach(function(x){x.classList.toggle('on',x.dataset.s===state.sort)})}
     apply();storeHead();if(!document.getElementById('mhead'))renderHomeSeo();applyLang();
     if(document.getElementById('grid')){if(!document.body.dataset.staticPage)renderDealOfDay();renderExpireAlert();}
-  }).catch(function(e){var r=document.getElementById('res');if(r)r.textContent='Ошибка: '+e});
+  }).catch(function(e){var r=document.getElementById('res');if(r)r.textContent='Ошибка загрузки предложений. Обновите страницу.'});
 
   // Обработчики
   var q=document.getElementById('q');
@@ -354,6 +356,8 @@ window.addEventListener('hashchange',function(){
   if(state.favorites){state.q='';state.cat='';state.type='';var q=document.getElementById('q');if(q)q.value='';}
   apply();
 });
+window.addEventListener('coupon-language-change',function(){if(state.q)apply();storeHead();});
 window.applyLang=applyLang;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
+
