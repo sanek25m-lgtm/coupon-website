@@ -1,6 +1,6 @@
 (function(){
 var DATA=[], VIEW=[], PER=24, page=1, dataReady=false;
-var state={q:'',cat:'',type:'',sort:'rel',merchant:''};
+var state={q:'',cat:'',type:'',sort:'rel',merchant:'',favorites:location.hash==='#fav'};
 var lang=localStorage.getItem('gl_lang')||(navigator.language||'ru').slice(0,2).toLowerCase();
 if(['ru','en','kz','tt','uz','zh'].indexOf(lang)<0)lang='ru';
 /* Базовый путь текущей страницы: работает и на localhost, и на GitHub Pages в подпапке,
@@ -168,8 +168,9 @@ function card(c){
 // Фильтрация + сортировка
 function apply(){
   if(!dataReady)return;
-  var q=state.q.toLowerCase();
+  var q=state.q.toLowerCase(), saved=favs();
   VIEW=DATA.filter(function(c){
+    if(state.favorites&&saved.indexOf(+c.id)<0)return false;
     if(state.merchant&&c.merchant!==state.merchant)return false;
     if(state.cat&&c.cat!==state.cat)return false;
     if(!couponIsActive(c))return false;
@@ -192,8 +193,8 @@ function draw(){
   var g=document.getElementById('grid');if(!g)return;
   var pages=Math.max(1,Math.ceil(VIEW.length/PER)),slice=VIEW.slice((page-1)*PER,page*PER);
   var resEl=document.getElementById('res');if(!resEl){g.innerHTML=slice.map(card).join('');return}
-  resEl.textContent=t('found')+' '+VIEW.length+(pages>1?' · стр.'+page:'');
-  g.innerHTML=slice.length?slice.map(card).join(''):'<p style="grid-column:1/-1;color:var(--mut)">'+t('nores')+'</p>';
+  resEl.textContent=(state.favorites?'Избранное · ': '')+t('found')+' '+VIEW.length+(pages>1?' · стр.'+page:'');
+  g.innerHTML=slice.length?slice.map(card).join(''):'<p role="status" style="grid-column:1/-1;color:var(--mut)">'+(state.favorites&&!favs().length?'В избранном пока нет предложений. Нажмите ★ на нужной карточке.':t('nores'))+'</p>';
   var pg=document.getElementById('pg'),ph='';
   for(var i=1;i<=Math.min(pages,12);i++)ph+='<button data-p="'+i+'" class="'+(i==page?'on':'')+'">'+i+'</button>';
   if(pages>1){ph+='<button data-p="'+(page<pages?page+1:pages)+'">›</button>'}
@@ -287,7 +288,7 @@ function toast(m){var el=document.getElementById('tt');if(!el)return;el.textCont
 // BOOT
 function boot(){
   var up=new URLSearchParams(location.search);
-  state.q=up.get('q')||'';
+  state.q=state.favorites?'':up.get('q')||'';
   if(/\/top\.html$/.test(location.pathname))state.sort='disc';
   if(document.getElementById('q'))document.getElementById('q').value=state.q;
   var hasListing=!!(document.getElementById('grid')||document.getElementById('merList'));
@@ -329,7 +330,7 @@ function boot(){
     var vb=e.target.closest('[data-vote]');if(vb){var v=getVotes();v[+vb.dataset.vid]=vb.dataset.vote;localStorage.setItem('gl_votes',JSON.stringify(v));vb.parentElement.querySelectorAll('.vote-btn').forEach(function(b){b.classList.remove('on-up','on-dn')});vb.classList.add(vb.dataset.vote==='up'?'on-up':'on-dn');return}
     var g=e.target.closest('[data-goto]');if(g){window.open(g.dataset.goto,'_blank','noopener');return}
     var lb=e.target.closest('.lang button');if(lb){lang=lb.dataset.l;localStorage.setItem('gl_lang',lang);applyLang();return}
-    var f=e.target.closest('[data-fav]');if(f){var id=+f.dataset.fav,a=favs(),i=a.indexOf(id);i<0?a.push(id):a.splice(i,1);setFavs(a);f.classList.toggle('on',i<0);return}
+    var f=e.target.closest('[data-fav]');if(f){var id=+f.dataset.fav,a=favs(),i=a.indexOf(id);i<0?a.push(id):a.splice(i,1);setFavs(a);if(state.favorites)apply();else f.classList.toggle('on',i<0);return}
     var p=e.target.closest('[data-p]');if(p){page=+p.dataset.p;draw();window.scrollTo(0,0);return}
     var c=e.target.closest('[data-cat]');if(c){state.cat=c.dataset.cat;apply()}
   });
@@ -348,6 +349,11 @@ function boot(){
   if(ck&&!localStorage.getItem('gl_cookie')){ck.classList.add('on');if(ok)ok.onclick=function(){localStorage.setItem('gl_cookie','1');ck.remove()}}
 }
 
+window.addEventListener('hashchange',function(){
+  state.favorites=location.hash==='#fav';
+  if(state.favorites){state.q='';state.cat='';state.type='';var q=document.getElementById('q');if(q)q.value='';}
+  apply();
+});
 window.applyLang=applyLang;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
