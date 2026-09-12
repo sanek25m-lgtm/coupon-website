@@ -159,7 +159,7 @@ function card(c){
     +'</div><button class="fav'+(favs().indexOf(c.id)>=0?' on':'')+'" data-fav="'+esc(c.id)+'" aria-label="В избранное">★</button></div>';
   h+='<h3 style="margin:0;font-size:16px;line-height:1.35">'+esc(c.name)+'</h3>';
   if(description)h+='<p style="margin:0;font-size:13px;color:var(--mut)">'+esc(description)+'</p>';
-  h+='<div class="meta">'+(label?'<span class="badge">'+esc(label)+'</span>':'')+'<span>'+esc(c.code?'промокод':'предложение магазина')+'</span></div>';
+  h+='<div class="meta">'+(label?'<span class="badge">'+esc(label)+'</span>':'')+'<span>'+esc(couponOfferKind(c))+'</span></div>';
   h+=couponTools(c);
   h+='<div class="act"><a class="btn" href="'+esc(c.urlc||c.url)+'" target="_blank" rel="sponsored nofollow noopener">'+t('get')+'</a></div>';
   return h+'</article>';

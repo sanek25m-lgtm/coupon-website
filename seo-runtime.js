@@ -41,11 +41,16 @@
     return count + ' ' + noun;
   };
   function discountInfo(c) {
+    if (/(?:к[еэ]шб[еэ]к|cash\s*back|бонус|балл|рассроч)/i.test(String(c.name || ''))) return { value: 0, capped: false };
     const match = String(c.name || '').match(/(\d{1,3})\s*%/);
     const value = match && +match[1] > 0 && +match[1] <= 100 ? +match[1] : 0;
     const capped = value && new RegExp('(?:до|up\\s+to)\\s*[−-]?\\s*' + value + '\\s*%', 'i').test(String(c.name || '') + ' ' + String(c.ins || ''));
     return { value, capped };
   }
+  window.couponOfferKind = function (c) {
+    if (/(?:бонус|балл)/i.test(String(c.name || '') + ' ' + String(c.desc || ''))) return 'бонусы';
+    return String(c.code || '').trim() ? 'промокод' : 'предложение магазина';
+  };
   window.couponDiscountLabel = function (c) {
     const info = discountInfo(c);
     return info.value ? (info.capped ? 'до ' : '−') + info.value + '%' : '';
