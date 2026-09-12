@@ -11,9 +11,9 @@ html{scroll-behavior:smooth}body{margin:0;font:15px/1.5 -apple-system,"Segoe UI"
 .qi:focus{outline:2px solid var(--b);background:#fff}.sb{position:absolute;right:6px;top:5px;border:0;background:none;font-size:20px;color:var(--mut);cursor:pointer}
 .hr{display:flex;gap:10px;align-items:center;margin-left:auto}
 .city select{border:1px solid var(--bd);border-radius:9px;padding:8px;background:#fff;font-size:14px;max-width:150px}
-.lang button{border:1px solid var(--bd);background:#fff;padding:6px 8px;font-size:12px;cursor:pointer;color:var(--mut)}
-.lang button:first-child{border-radius:8px 0 0 8px}.lang button:last-child{border-radius:0 8px 8px 0}
-.lang button.on{background:var(--b);color:#fff;border-color:var(--b)}.fav-lnk{font-size:14px;color:var(--ink)}
+.lang :is(button,a){border:1px solid var(--bd);background:#fff;padding:6px 8px;font-size:12px;cursor:pointer;color:var(--mut)}
+.lang :is(button,a):first-child{border-radius:8px 0 0 8px}.lang :is(button,a):last-child{border-radius:0 8px 8px 0}
+.lang :is(button,a).on{background:var(--b);color:#fff;border-color:var(--b)}.fav-lnk{font-size:14px;color:var(--ink)}
 .hero{padding:26px 0 10px}.hero h1{margin:0 0 6px;font-size:29px;line-height:1.25;letter-spacing:-.4px}.hero p{margin:0 0 14px;color:var(--mut)}
 .adsbyplaceholder{display:block;margin:14px auto;padding:34px 10px;border:1px dashed var(--bd);border-radius:var(--r);background:#fbfbfd;color:#98a2b3;font-size:12px;text-align:center;max-width:336px}
 .ad-end{max-width:100%;padding:22px 10px}
@@ -89,7 +89,7 @@ html{scroll-behavior:smooth}body{margin:0;font:15px/1.5 -apple-system,"Segoe UI"
 .btn-theme:hover{border-color:var(--b)}
 
 .lang{display:flex;flex-wrap:wrap}
-@media(max-width:900px){.lang button{padding:6px 6px;font-size:11px}}
+@media(max-width:900px){.lang :is(button,a){padding:6px 6px;font-size:11px}}
 
 /* === 5. Анимация появления карточек (fade-in + slide-up) === */
 @keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -158,4 +158,6 @@ html{scroll-behavior:smooth}body{margin:0;font:15px/1.5 -apple-system,"Segoe UI"
 .tt.on{transform:translateY(0);opacity:1}
 
 /* Language labels remain accessible on narrow screens. */
-.lang{display:flex;flex-wrap:wrap;gap:3px;max-width:100%;}.lang button{white-space:nowrap;font-size:12px;min-height:32px}.language-status{font-size:12px;max-width:220px}.hdr-in{flex-wrap:wrap}.hr{flex-wrap:wrap;max-width:100%}
+.lang{display:flex;flex-wrap:wrap;gap:3px;max-width:100%;}.lang :is(button,a){white-space:nowrap;font-size:12px;min-height:32px}.language-status{font-size:12px;max-width:220px}.hdr-in{flex-wrap:wrap}.hr{flex-wrap:wrap;max-width:100%}
+
+.lang a{display:inline-flex;align-items:center;text-decoration:none}.lang a:focus-visible{outline:2px solid var(--b);outline-offset:2px}

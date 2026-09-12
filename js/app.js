@@ -308,7 +308,7 @@ function boot(){
     if(document.getElementById('mhead'))state.merchant=document.body.dataset.merchant||up.get('merchant')||'';
     if(/\/store\.html$/.test(location.pathname)){
       var route=(window.COUPON_ROUTES.stores||{})[state.merchant];
-      if(route){location.replace(new URL(route,couponSiteRoot));return;}
+      if(route){var target=new URL(route,couponSiteRoot);var params=new URLSearchParams(location.search);params.delete('merchant');target.search=params.toString();target.hash=location.hash;location.replace(window.CouponI18n?CouponI18n.localizeUrl(target.href):target.href);return;}
       var noindex=document.createElement('meta');noindex.name='robots';noindex.content='noindex';document.head.appendChild(noindex);
     }
     if(up.get('s')){state.sort=up.get('s');document.querySelectorAll('#sortChips button').forEach(function(x){x.classList.toggle('on',x.dataset.s===state.sort)})}
@@ -360,4 +360,3 @@ window.addEventListener('coupon-language-change',function(){if(state.q)apply();s
 window.applyLang=applyLang;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
-

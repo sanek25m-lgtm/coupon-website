@@ -104,7 +104,9 @@
   if (/\/info\.html$/.test(location.pathname)) {
     const p = new URLSearchParams(location.search).get('p') || 'about';
     if (['about','contacts','privacy','terms','cookies'].includes(p)) {
-      location.replace(new URL('info/' + p + '.html', root).href);
+      const language=document.documentElement?.dataset.i18nSeo==='true' ? document.documentElement.lang : 'ru';
+      const prefix=['en','kk','tt','uz','zh'].includes(language) ? language+'/' : '';
+      location.replace(new URL(prefix+'info/' + p + '.html'+location.hash, root).href);
     }
   }
 })();
