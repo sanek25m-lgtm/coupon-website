@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Калькулятор итоговой стоимости покупки — Купонатор</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="seo.css">
+<script src="seo-routes.js"></script><script src="seo-runtime.js"></script><script src="js/compare.js" defer></script>
+<meta name="description" content="Сравните два варианта покупки с доставкой, обязательными сборами и количеством товара. Все цены вводятся вручную.">
+<link rel="canonical" href="https://sanek25m-lgtm.github.io/coupon-website/compare.html">
+<meta property="og:title" content="Калькулятор итоговой стоимости покупки — Купонатор">
+<meta property="og:description" content="Сравните два варианта покупки с доставкой, обязательными сборами и количеством товара. Все цены вводятся вручную.">
+<meta property="og:url" content="https://sanek25m-lgtm.github.io/coupon-website/compare.html">
+</head><body>
+<header class="hdr"><div class="wrap hdr-in"><a class="logo" href="./"><span class="logo-m">К</span><span class="logo-t">Купонатор</span></a><a href="catalog.html">Акции без промокода</a></div></header>
+<main class="wrap compare-main"><nav class="seo-breadcrumbs"><a href="./">Главная</a> / Сравнение покупки</nav>
+<h1>Сколько покупка стоит на самом деле</h1>
+<p>Сравните два варианта одного товара. Введите действующую цену, количество, доставку и обязательные сборы. Калькулятор не запрашивает цены в магазинах и ничего не покупает.</p>
+<form id="compare-form"><label class="currency-label">Валюта всех сумм <select name="currency"><option value="RUB">₽ — рубли</option><option value="EUR">€ — евро</option><option value="KZT">₸ — тенге</option><option value="USD">$ — доллары</option></select></label>
+<div class="compare-grid">
+<fieldset><legend>Вариант А</legend><label>Цена товара за 1 единицу<input name="a_price" type="number" min="0" max="100000000" step="0.01" required placeholder="Например, 1000"></label><label>Количество одинаковых единиц<input name="a_qty" type="number" min="1" max="1000000" step="1" required value="1"></label><label>Доставка за весь заказ<input name="a_delivery" type="number" min="0" max="100000000" step="0.01" required value="0"></label><label>Обязательные сборы за заказ<input name="a_fees" type="number" min="0" max="100000000" step="0.01" required value="0"></label></fieldset>
+<fieldset><legend>Вариант Б</legend><label>Цена товара за 1 единицу<input name="b_price" type="number" min="0" max="100000000" step="0.01" required placeholder="Например, 1100"></label><label>Количество одинаковых единиц<input name="b_qty" type="number" min="1" max="1000000" step="1" required value="1"></label><label>Доставка за весь заказ<input name="b_delivery" type="number" min="0" max="100000000" step="0.01" required value="0"></label><label>Обязательные сборы за заказ<input name="b_fees" type="number" min="0" max="100000000" step="0.01" required value="0"></label></fieldset>
+</div><button class="btn" type="submit">Сравнить итоговую стоимость</button></form>
+<section id="compare-result" class="compare-result" aria-live="polite"><h2>Результат появится здесь</h2><p>Заполните цены двух вариантов. Личные данные не нужны, расчёт выполняется в браузере.</p></section>
+<noscript><p>Для автоматического расчёта нужен JavaScript. Можно посчитать вручную: цена за единицу × количество + доставка + сборы. Затем разделите итог на количество.</p></noscript>
+<section class="seo-help"><h2>Что учитывать в сравнении</h2><p>Используйте одну валюту: конвертация здесь не выполняется. Цена за единицу сопоставима только для одинакового товара, объёма и комплектации. Будущие баллы и условный кешбэк не уменьшают сумму сегодняшней оплаты.</p><p>Для набора сначала разделите цену набора на число одинаковых единиц и введите это число в поле количества. Если состав набора разный, такое сравнение неприменимо.</p><h2>Пример, а не предложение магазина</h2><p>Товар за 1 000 ₽ с доставкой 300 ₽ обойдётся в 1 300 ₽. Тот же товар за 1 100 ₽ с бесплатной доставкой — в 1 100 ₽. Во втором случае к оплате на 200 ₽ меньше.</p><p><a href="guides.html">Руководства по сравнению покупок</a> · <a href="catalog.html">Открыть каталог акций</a></p></section>
+</main><!-- seo-footer:start --><nav class="seo-footer"><a href="catalog.html">Все магазины</a> · <a href="guides.html">Как сравнивать покупки</a> · <a href="compare.html">Калькулятор покупки</a> · <a href="info/about.html">О проекте</a> · <a href="info/contacts.html">Обратная связь</a> · <a href="info/privacy.html">Данные</a> · <a href="sitemap.xml">Карта сайта</a></nav><!-- seo-footer:end --></body></html>

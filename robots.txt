@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /.env
+Disallow: /agent.log
+Disallow: /server.log
+Disallow: /auto_update.py
+Disallow: /server.py
+
+Sitemap: https://sanek25m-lgtm.github.io/coupon-website/sitemap.xml
