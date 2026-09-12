@@ -35,6 +35,28 @@
     return window.couponIsActive(c) && hasCode === (project === 'kod-kupona');
   };
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  window.couponOfferCount = function (count) {
+    const n = Math.abs(count), last = n % 10, teen = n % 100;
+    const noun = last === 1 && teen !== 11 ? 'предложение' : last >= 2 && last <= 4 && (teen < 12 || teen > 14) ? 'предложения' : 'предложений';
+    return count + ' ' + noun;
+  };
+  function discountInfo(c) {
+    const match = String(c.name || '').match(/(\d{1,3})\s*%/);
+    const value = match && +match[1] > 0 && +match[1] <= 100 ? +match[1] : 0;
+    const capped = value && new RegExp('(?:до|up\\s+to)\\s*[−-]?\\s*' + value + '\\s*%', 'i').test(String(c.name || '') + ' ' + String(c.ins || ''));
+    return { value, capped };
+  }
+  window.couponDiscountLabel = function (c) {
+    const info = discountInfo(c);
+    return info.value ? (info.capped ? 'до ' : '−') + info.value + '%' : '';
+  };
+  window.couponDescription = function (c) {
+    const text = String(c.desc || ''), info = discountInfo(c);
+    if (!text || text === c.name) return '';
+    if (info.capped && new RegExp('(^|[^0-9])' + info.value + '\\s*%').test(text)
+        && !new RegExp('(?:до|up\\s+to)\\s*[−-]?\\s*' + info.value + '\\s*%', 'i').test(text)) return '';
+    return text;
+  };
   window.couponReportUrl = function (c) {
     const u = new URL('https://github.com/sanek25m-lgtm/' + project + '/issues/new');
     u.searchParams.set('title', 'Купон ' + c.id + ': ' + c.merchant);

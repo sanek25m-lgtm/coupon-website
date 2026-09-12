@@ -147,6 +147,7 @@ function showSkeleton(){var g=document.getElementById('grid');if(!g||g.querySele
 // Карточка
 function card(c){
   var d=disc(c.name),left=daysLeft(c.end),dead=c.end&&left<0;
+  var label=couponDiscountLabel(c),description=couponDescription(c);
   var letter=esc((c.merchant||'?').replace(/^www\./,'')[0]||'?').toUpperCase();
   var logo=c.logo?'<img src="'+esc(c.logo)+'" alt="" loading="lazy" onerror="this.remove()">':letter;
   var h='<article id="coupon-'+esc(c.id)+'" class="card'+(dead?' dead':'')+'" data-id="'+esc(c.id)+'">';
@@ -157,8 +158,8 @@ function card(c){
     +'<div class="rate">'+(c.cat?' <span>'+esc(catName(c.cat))+'</span>':'')+timerBadge(c.end)+'<span class="stars-b">'+t('until')+' '+dmy(c.end)+'</span></div>'
     +'</div><button class="fav'+(favs().indexOf(c.id)>=0?' on':'')+'" data-fav="'+esc(c.id)+'" aria-label="В избранное">★</button></div>';
   h+='<h3 style="margin:0;font-size:16px;line-height:1.35">'+esc(c.name)+'</h3>';
-  if(c.desc)h+='<p style="margin:0;font-size:13px;color:var(--mut)">'+esc(c.desc)+'</p>';
-  h+='<div class="meta">'+(d?'<span class="badge">−'+d+'%</span>':'')+'<span>'+esc(c.kind||'акция')+'</span></div>';
+  if(description)h+='<p style="margin:0;font-size:13px;color:var(--mut)">'+esc(description)+'</p>';
+  h+='<div class="meta">'+(label?'<span class="badge">'+esc(label)+'</span>':'')+'<span>'+esc(c.kind||'акция')+'</span></div>';
   h+=couponTools(c);
   h+='<div class="act"><a class="btn" href="'+esc(c.urlc||c.url)+'" target="_blank" rel="sponsored nofollow noopener">'+t('get')+'</a></div>';
   return h+'</article>';
@@ -293,7 +294,7 @@ function boot(){
   applyLang();
   showSkeleton();
   var embedded=document.getElementById('page-coupons');
-  var loading=!hasListing?Promise.resolve([]):embedded?Promise.resolve(JSON.parse(embedded.textContent)):fetch(BASE+'data/coupons.json').then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()});
+  var loading=!hasListing?Promise.resolve([]):embedded?Promise.resolve(JSON.parse(embedded.textContent)):fetch(BASE+'data/browser-coupons.json').then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json()});
   loading.then(function(rows){
     if(!hasListing)return;
     DATA=rows.filter(couponForSite);setFavs(favs());
