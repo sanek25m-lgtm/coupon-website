@@ -6,4 +6,5 @@ Disallow: /server.log
 Disallow: /auto_update.py
 Disallow: /server.py
 
-Sitemap: https://sanek25m-lgtm.github.io/coupon-website/sitemap.xml
+Sitemap: http://xn--80atjdccloe.art/sitemap.xml
+
