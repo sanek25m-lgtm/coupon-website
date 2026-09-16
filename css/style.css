@@ -161,3 +161,8 @@ html{scroll-behavior:smooth}body{margin:0;font:15px/1.5 -apple-system,"Segoe UI"
 .lang{display:flex;flex-wrap:wrap;gap:3px;max-width:100%;}.lang :is(button,a){white-space:nowrap;font-size:12px;min-height:32px}.language-status{font-size:12px;max-width:220px}.hdr-in{flex-wrap:wrap}.hr{flex-wrap:wrap;max-width:100%}
 
 .lang a{display:inline-flex;align-items:center;text-decoration:none}.lang a:focus-visible{outline:2px solid var(--b);outline-offset:2px}
+
+
+/* Live catalogue totals shown in the homepage hero. */
+.site-stats{margin:10px 0 0;color:var(--mut);font-size:14px;font-weight:600}
+.offer-kind{font-size:.8em;font-weight:700;color:#c2410c}

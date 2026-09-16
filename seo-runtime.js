@@ -32,7 +32,7 @@
   };
   window.couponForSite = function (c) {
     const hasCode = Boolean(String(c.code || '').trim());
-    return window.couponIsActive(c) && hasCode === (project === 'kod-kupona');
+    return window.couponIsActive(c);
   };
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   window.couponOfferCount = function (count) {

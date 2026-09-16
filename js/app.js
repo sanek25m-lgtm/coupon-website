@@ -159,7 +159,8 @@ function card(c){
     +'</div><button class="fav'+(favs().indexOf(c.id)>=0?' on':'')+'" data-fav="'+esc(c.id)+'" aria-label="В избранное">★</button></div>';
   h+='<h3 style="margin:0;font-size:16px;line-height:1.35">'+esc(c.name)+'</h3>';
   if(description)h+='<p style="margin:0;font-size:13px;color:var(--mut)">'+esc(description)+'</p>';
-  h+='<div class="meta">'+(label?'<span class="badge">'+esc(label)+'</span>':'')+'<span>'+esc(couponOfferKind(c))+'</span></div>';
+  var kind=String(c.code||'').trim()?'Промокод':'Акция без промокода';
+  h+='<div class="meta">'+(label?'<span class="badge">'+esc(label)+'</span>':'')+'<span class="offer-kind">'+esc(kind)+'</span></div>';
   h+=couponTools(c);
   h+='<div class="act"><a class="btn" href="'+esc(c.urlc||c.url)+'" target="_blank" rel="sponsored nofollow noopener">'+t('get')+'</a></div>';
   return h+'</article>';
@@ -221,6 +222,12 @@ function renderHomeSeo(){
 function seo(){
   var mer={},cm={};DATA.forEach(function(c){mer[c.merchant]=(mer[c.merchant]||0)+1;if(c.cat)cm[c.cat]=(cm[c.cat]||0)+1});
   var h=document.getElementById('heroN');if(h)h.textContent=String(Object.keys(mer).length);
+  var stats=document.getElementById('siteStats');
+  if(stats){
+    var n=DATA.length,last=n%10,teen=n%100;
+    var word=last===1&&teen!==11?'купон':last>=2&&last<=4&&(teen<12||teen>14)?'купона':'купонов';
+    stats.textContent='Сейчас активно '+n+' '+word+' от '+Object.keys(mer).length+' магазинов';
+  }
   var top=Object.keys(mer).sort(function(a,b){return a.localeCompare(b,'ru')});
   var ml=document.getElementById('merList');if(ml)ml.innerHTML=top.map(function(k){return '<a href="'+esc(merchantUrl(k))+'">'+esc(k)+' <b>'+mer[k]+'</b></a>'}).join('');
   var cl=document.getElementById('catList');if(cl)cl.innerHTML=Object.keys(cm).sort(function(a,b){return cm[b]-cm[a]}).map(function(k){return '<a href="'+esc(categoryUrl(k))+'">'+esc(catName(k))+' <b>'+cm[k]+'</b></a>'}).join('');
