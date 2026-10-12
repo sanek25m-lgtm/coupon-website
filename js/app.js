@@ -141,6 +141,26 @@ function applyLang() {
   }
 
 
+function couponTrackedUrl(c){
+  var raw=String(c&&(c.urlc||c.url)||'');if(!raw)return raw;
+  try{
+    var target=new URL(raw,location.href);
+    if(target.hostname!=='xf.gdeslon.ru'||target.pathname.indexOf('/ck/')!==0)return raw;
+    var existingSite=target.searchParams.get('sub_id');
+    if(existingSite&&existingSite!=='ca')return raw;
+    var pageType=document.body.dataset.merchant?'store':document.body.dataset.category?'category':/\/top\.html$/.test(location.pathname)?'top':'home';
+    var route=location.pathname.match(/(?:^|\/)(?:stores|categories)\/([a-z0-9-]+)(?:\/|$)/i);
+    var placement=route?route[1]:(pageType==='store'?document.body.dataset.merchant:pageType==='category'?document.body.dataset.category:'all');
+    var locale=(window.CouponI18n&&window.CouponI18n.language)||lang||'ru';
+    if(locale==='kz')locale='kk';
+    var offer=String(c.id||'unknown').replace(/[^a-zA-Z0-9_-]/g,'').slice(0,48)||'unknown';
+    var tags={sub_id:'ca',sub_id2:String(locale).slice(0,16),sub_id3:pageType,sub_id4:String(placement||'all').toLowerCase().replace(/[^a-z0-9-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,48)||'all',sub_id5:offer};
+    Object.keys(tags).forEach(function(key){if(!target.searchParams.has(key))target.searchParams.set(key,tags[key])});
+    return target.href;
+  }catch(_){return raw;}
+}
+window.couponTrackedUrl=couponTrackedUrl;
+
 // Фича 7: Скелетон
 function showSkeleton(){var g=document.getElementById('grid');if(!g||g.querySelector('.card'))return;var s='';for(var i=0;i<8;i++)s+='<div class="skel-card"></div>';g.innerHTML=s;}
 
@@ -162,7 +182,7 @@ function card(c){
   var kind=String(c.code||'').trim()?'Промокод':'Акция без промокода';
   h+='<div class="meta">'+(label?'<span class="badge">'+esc(label)+'</span>':'')+'<span class="offer-kind">'+esc(kind)+'</span></div>';
   h+=couponTools(c);
-  h+='<div class="act"><a class="btn" href="'+esc(c.urlc||c.url)+'" target="_blank" rel="sponsored nofollow noopener">'+t('get')+'</a></div>';
+  h+='<div class="act"><a class="btn" href="'+esc(couponTrackedUrl(c))+'" target="_blank" rel="sponsored nofollow noopener">'+t('get')+'</a></div>';
   return h+'</article>';
 }
 
@@ -245,7 +265,7 @@ function renderDealOfDay(){
   el.innerHTML='<span class="badge-dod">⭐ Купон дня</span>'
     +'<h3>'+esc(deal.name)+'</h3>'
     +'<div class="dod-merch">'+esc(deal.merchant)+(disc(deal.name)?' · −'+disc(deal.name)+'%':'')+'</div>'
-    +'<button class="btn" data-goto="'+esc(deal.urlc||deal.url)+'">'+t('get')+'</button>';
+    +'<button class="btn" data-goto="'+esc(couponTrackedUrl(deal))+'">'+t('get')+'</button>';
 }
 
 // Фича 9: Топ-популярное
