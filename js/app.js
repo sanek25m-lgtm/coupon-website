@@ -249,6 +249,7 @@ function seo(){
     stats.textContent='Сейчас активно '+n+' '+word+' от '+Object.keys(mer).length+' магазинов';
   }
   var top=Object.keys(mer).sort(function(a,b){return a.localeCompare(b,'ru')});
+  var popular=document.getElementById('popularStores');if(popular)popular.innerHTML=Object.keys(mer).sort(function(a,b){return mer[b]-mer[a]||a.localeCompare(b,'ru')}).slice(0,6).map(function(k){return'<a class="popular-store mn" href="'+esc(merchantUrl(k))+'">'+esc(k)+'<span aria-hidden="true">→</span></a>'}).join('');
   var ml=document.getElementById('merList');if(ml)ml.innerHTML=top.map(function(k){return '<a href="'+esc(merchantUrl(k))+'">'+esc(k)+' <b>'+mer[k]+'</b></a>'}).join('');
   var cl=document.getElementById('catList');if(cl)cl.innerHTML=Object.keys(cm).sort(function(a,b){return cm[b]-cm[a]}).map(function(k){return '<a href="'+esc(categoryUrl(k))+'">'+esc(catName(k))+' <b>'+cm[k]+'</b></a>'}).join('');
 }
