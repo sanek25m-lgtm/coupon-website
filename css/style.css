@@ -220,3 +220,19 @@ a:hover{color:#0d6139}
 @media(max-width:380px){.product-grid{grid-template-columns:1fr}.product-photo{height:190px}.lang :is(button,a){padding:5px 5px;font-size:10px}.hero h1{font-size:23px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.product-card,.btn,.cats a,.chips button,.merlist a,.hero{animation:none!important;transition:none!important}.card:hover,.product-card:hover,.btn:hover{transform:none}}
 html[data-theme="dark"]{color-scheme:dark}
+
+/* Keep the optional dark toggle coherent with the light storefront. */
+html[data-theme="dark"]{--b:#7aa2ff;--ink:#e6e9ef;--mut:#98a2b3;--bd:#2a3140;--bg:#0f1217;--bg2:#131822;--card:#161b24;color-scheme:dark}
+html[data-theme="dark"] body{background:#0f1217;color:#e6e9ef}
+html[data-theme="dark"] .hdr{background:rgba(17,21,29,.96);border-color:#2a3140}
+html[data-theme="dark"] .logo,html[data-theme="dark"] .hero h1{color:#e6e9ef}
+html[data-theme="dark"] .qi,html[data-theme="dark"] .city select,html[data-theme="dark"] .lang :is(button,a),html[data-theme="dark"] .chips button,html[data-theme="dark"] .pg button,html[data-theme="dark"] .cats a,html[data-theme="dark"] .merlist a,html[data-theme="dark"] #productSearch,html[data-theme="dark"] #shopFilter,html[data-theme="dark"] #categoryFilter{background:#161b24;color:#e6e9ef;border-color:#2a3140}
+html[data-theme="dark"] .card,html[data-theme="dark"] .product-card{background:#161b24;color:#e6e9ef;border-color:#2a3140}
+html[data-theme="dark"] .card p,html[data-theme="dark"] .product-card p,html[data-theme="dark"] .products-note{color:#b5c0cf}
+html[data-theme="dark"] .cp2,html[data-theme="dark"] .adsbyplaceholder{background:#131822;color:#98a2b3;border-color:#2a3140}
+html[data-theme="dark"] .seo{border-color:#2a3140}
+html[data-theme="dark"] .ftr{background:#080b10;color:#c6d0dd}
+html[data-theme="dark"] .fn a{color:#dbe6f4}
+html[data-theme="dark"] .cookie{background:#161b24;color:#e6e9ef;border-color:#2a3140}
+html[data-theme="dark"] .deal-of-day{background:linear-gradient(135deg,#1c1a0e,#2d2a14);color:#f3f4f6;border-color:#8a6b19}
+html[data-theme="dark"] .deal-of-day :is(h2,h3,p,.dod-title){color:#f3f4f6}
