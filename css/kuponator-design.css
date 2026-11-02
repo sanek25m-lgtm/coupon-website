@@ -218,3 +218,16 @@ body{background:#fffaf4;color:#073a29}.wrap{max-width:1440px;padding-left:32px;p
   font-size:13px;line-height:1.4
 }
 .grid .card h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+
+
+/* Tablet: preserve the horizontal ticket composition while using one catalog column. */
+@media(min-width:681px) and (max-width:1000px){
+  .grid .card{
+    grid-template-columns:125px minmax(0,1fr) 128px;
+    grid-template-areas:"brand title action" "brand desc action" "brand meta action" "brand code action" "brand conditions action" "report report report";
+    column-gap:14px;row-gap:6px;min-height:132px
+  }
+  .grid .card .ctop{padding-right:10px}
+  .grid .card .act{justify-self:auto}
+  .grid .card .act .btn{width:100%;min-width:0;padding:0 10px}
+}
