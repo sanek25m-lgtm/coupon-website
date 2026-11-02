@@ -193,3 +193,10 @@ body{background:#fffaf4;color:#073a29}.wrap{max-width:1440px;padding-left:32px;p
 [data-theme="dark"] .grid .card .badge{background:#ffd95b;color:#173b2d}
 [data-theme="dark"] .grid .card .coupon-code{background:#25281d;border-color:#8f654f}
 [data-theme="dark"] .grid .card .coupon-code code{color:#ffe9a8}
+
+
+/* Keep ticket cards inside the viewport at tablet widths. */
+.grid{width:100%;min-width:0}
+.grid .card,.grid .card>*{min-width:0}
+@media(max-width:1000px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){.grid .card .mn,.grid .card h3,.grid .card .meta,.grid .card .coupon-code,.grid .card .coupon-conditions{overflow-wrap:anywhere}}
