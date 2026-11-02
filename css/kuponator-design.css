@@ -200,3 +200,21 @@ body{background:#fffaf4;color:#073a29}.wrap{max-width:1440px;padding-left:32px;p
 .grid .card,.grid .card>*{min-width:0}
 @media(max-width:1000px){.grid{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:900px){.grid .card .mn,.grid .card h3,.grid .card .meta,.grid .card .coupon-code,.grid .card .coupon-conditions{overflow-wrap:anywhere}}
+
+
+/* Keep offer copy compact like the selected coupon mockup. */
+@media(min-width:1001px){
+  .grid .card{grid-template-areas:"brand title action" "brand desc action" "brand meta action" "brand code action" "brand conditions action" "report report report"}
+}
+@media(max-width:1000px) and (min-width:681px){
+  .grid .card{grid-template-areas:"brand title" "brand desc" "brand meta" "brand code" "brand conditions" "action action" "report report"}
+}
+@media(max-width:680px){
+  .grid .card{grid-template-areas:"brand" "title" "desc" "meta" "code" "conditions" "action" "report"}
+}
+.grid .card>p{
+  grid-area:desc;display:-webkit-box;-webkit-box-orient:vertical;
+  -webkit-line-clamp:2;overflow:hidden;margin:0;color:#66736c;
+  font-size:13px;line-height:1.4
+}
+.grid .card h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
