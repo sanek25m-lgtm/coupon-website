@@ -231,3 +231,9 @@ body{background:#fffaf4;color:#073a29}.wrap{max-width:1440px;padding-left:32px;p
   .grid .card .act{justify-self:auto}
   .grid .card .act .btn{width:100%;min-width:0;padding:0 10px}
 }
+
+
+@media(min-width:681px) and (max-width:1000px){
+  .grid .card .act{grid-area:auto;grid-column:3;grid-row:1/6;align-self:center;justify-self:end;width:128px!important;margin:0!important}
+  .grid .card .act .btn{width:128px!important;min-width:0!important;max-width:128px}
+}
