@@ -136,3 +136,60 @@ body{background:#fffaf4;color:#073a29}.wrap{max-width:1440px;padding-left:32px;p
 [data-theme="dark"] .site-nav-link:hover,[data-theme="dark"] .site-nav-link.is-active{background:#3a2a1e;color:#ff865e}
 [data-theme="dark"] .popular-store,[data-theme="dark"] .cats a,[data-theme="dark"] .chips button,[data-theme="dark"] #typeChips a{background:#18241d;border-color:#35443b;color:#e6f0e8}
 [data-theme="dark"] .ftr{background:#09130d}
+
+
+/* Coupon ticket cards: match the selected orange concept across coupon pages. */
+.grid .card{
+  position:relative;display:grid;
+  grid-template-columns:minmax(92px,.34fr) minmax(0,1fr) max-content;
+  grid-template-areas:"brand title action" "brand meta action" "brand code action" "brand conditions action" "report report report";
+  align-items:center;column-gap:16px;row-gap:8px;
+  min-height:126px;padding:14px 16px;
+  overflow:visible;border:1px solid var(--bd);border-radius:16px;
+  background:var(--card);
+  box-shadow:0 3px 12px #1838290d;
+}
+.grid .card::before,.grid .card::after{
+  content:"";position:absolute;z-index:2;top:50%;
+  width:20px;height:20px;border:1px solid var(--bd);border-radius:50%;
+  background:var(--bg);transform:translateY(-50%);pointer-events:none;
+}
+.grid .card::before{left:-11px}.grid .card::after{right:-11px}
+.grid .card:hover{transform:translateY(-2px);border-color:#ffb394;box-shadow:0 9px 20px #18382916}
+.grid .card .ctop{
+  position:relative;grid-area:brand;align-self:stretch;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:7px;min-width:0;padding:0 12px 0 2px;
+  border-right:2px dashed #c9d2cc;
+}
+.grid .card .lg{flex:none;width:54px;height:54px;border-radius:13px;background:#fff;color:#f24718}
+.grid .card .lg img{width:100%;height:100%;object-fit:contain}
+.grid .card .mn{max-width:100%;overflow-wrap:anywhere;text-align:center;font-size:14px;line-height:1.2}
+.grid .card .fav{position:absolute;top:0;right:5px}
+.grid .card h3{grid-area:title;align-self:end;margin:0;font-size:17px;line-height:1.25}
+.grid .card .meta{grid-area:meta;align-self:start;display:flex;flex-wrap:wrap;min-width:0;color:#58665e;font-size:13px}
+.grid .card .badge{border-radius:3px;background:#ffe76a;color:#123c2b;font-size:16px;font-weight:850}
+.grid .card .coupon-code{grid-area:code;min-width:0;margin:0;padding:6px 9px;border:1px dashed #f3a27f;border-radius:8px;background:#fff8f2}
+.grid .card .coupon-code code{overflow-wrap:anywhere;color:#173b2d;font-weight:750}
+.grid .card .coupon-conditions{grid-area:conditions;min-width:0;margin:0;padding:0;border:0;background:transparent;font-size:12px}
+.grid .card .coupon-conditions[open]{padding:8px 10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg)}
+.grid .card .coupon-conditions summary{cursor:pointer;color:#516158}
+.grid .card .act{grid-area:action;align-self:center;margin:0}
+.grid .card .act .btn{display:inline-flex;align-items:center;justify-content:center;min-width:118px;padding:0 14px;white-space:nowrap;background:#06452f}
+.grid .card .report-link{grid-area:report;justify-self:end;margin-top:2px;font-size:10px;color:#77857d}
+@media(max-width:900px){
+  .grid .card{grid-template-columns:minmax(82px,.3fr) minmax(0,1fr);grid-template-areas:"brand title" "brand meta" "brand code" "brand conditions" "action action" "report report";column-gap:12px;min-height:0}
+  .grid .card .act{justify-self:stretch}
+  .grid .card .act .btn{width:100%}
+}
+@media(max-width:680px){
+  .grid .card{grid-template-columns:minmax(0,1fr);grid-template-areas:"brand" "title" "meta" "code" "conditions" "action" "report";gap:9px;padding:13px 14px}
+  .grid .card .ctop{flex-direction:row;justify-content:flex-start;min-height:55px;padding:0 34px 9px 0;border-right:0;border-bottom:2px dashed #c9d2cc}
+  .grid .card .lg{width:44px;height:44px}
+  .grid .card .mn{text-align:left}
+  .grid .card .fav{top:8px;right:2px}
+  .grid .card h3{align-self:auto;font-size:16px}
+}
+[data-theme="dark"] .grid .card .badge{background:#ffd95b;color:#173b2d}
+[data-theme="dark"] .grid .card .coupon-code{background:#25281d;border-color:#8f654f}
+[data-theme="dark"] .grid .card .coupon-code code{color:#ffe9a8}
