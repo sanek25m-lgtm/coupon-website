@@ -4,7 +4,7 @@
   "website_id": 3016388,
   "imported_at": null,
   "stock_verified_at": null,
-  "import_status": "legacy_unknown",
+  "import_status": "error",
   "stock_evidence_basis": null,
   "product_count": 270,
   "shops": [
@@ -22,8 +22,10 @@
     }
   ],
   "limit_per_shop": 100,
-  "last_attempt_at": null,
-  "last_error": null,
+  "last_attempt_at": "2026-11-03T07:58:18Z",
+  "last_error": {
+    "code": "missing_credentials"
+  },
   "selection_report": null,
-  "last_attempt_report": null
+  "last_attempt_report": {}
 }
