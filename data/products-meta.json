@@ -4,7 +4,7 @@
   "website_id": 3016388,
   "imported_at": null,
   "stock_verified_at": null,
-  "import_status": "error",
+  "import_status": "saved_snapshot",
   "stock_evidence_basis": null,
   "product_count": 270,
   "shops": [
@@ -27,5 +27,6 @@
     "code": "missing_credentials"
   },
   "selection_report": null,
-  "last_attempt_report": {}
+  "last_attempt_report": {},
+  "refresh_mode": "snapshot"
 }

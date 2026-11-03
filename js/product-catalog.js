@@ -23,7 +23,8 @@ function freshnessText(meta){
  const date=meta&&meta.imported_at?new Date(meta.imported_at):null;
  let text=date&&Number.isFinite(date.getTime())?'Загрузка партнёрских данных: '+date.toLocaleString('ru-RU',{timeZone:'UTC'})+' UTC. ':'Дата исходной товарной выгрузки неизвестна. ';
  if(date&&Date.now()-date.getTime()>48*3600*1000)text+='Данные старше двух суток. ';
- if(meta&&meta.import_status==='error')text+='Последнее обновление не удалось; сохранена предыдущая подборка. ';
+ if(meta&&meta.import_status==='saved_snapshot')text+='Используется сохранённая подборка; автоматическое обновление приостановлено. ';
+ else if(meta&&meta.import_status==='error')text+='Последнее обновление не удалось; сохранена предыдущая подборка. ';
  return text+'Цена и наличие подтверждаются магазином перед заказом.';
 }
 const load=(url,optional=false)=>fetch(url).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).catch(error=>{if(optional)return null;throw error;});
