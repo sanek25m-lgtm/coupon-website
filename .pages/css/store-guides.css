@@ -1,0 +1,5 @@
+.store-expert{max-width:900px;margin:32px auto;border-top:2px solid #f4d3bb;padding-top:24px;color:#173c2b}
+.store-expert h3{font-size:1.25rem;margin:28px 0 14px}.store-expert h4{font-size:1rem;margin:18px 0 8px}.store-expert li{margin:8px 0}
+.store-expert .store-guide-source{font-size:.82rem;margin-top:4px;color:#666}.store-expert .store-guide-limit{padding:12px 16px;background:#fff4e7;border-radius:8px;font-size:.9rem}
+.store-expert details{border-bottom:1px solid #eadfd5;padding:8px 0}.store-expert summary{cursor:pointer;font-weight:600;padding:10px 0}.store-expert summary:focus-visible{outline:2px solid #e9481c;outline-offset:3px}
+@media(max-width:600px){.store-expert{padding:16px 0}.store-expert h3{font-size:1.15rem}}

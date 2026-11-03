@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": "admitad",
+  "website_id": 3016388,
+  "imported_at": null,
+  "stock_verified_at": null,
+  "import_status": "saved_snapshot",
+  "stock_evidence_basis": null,
+  "product_count": 270,
+  "shops": [
+    {
+      "name": "Am Pm store RU",
+      "product_count": 100
+    },
+    {
+      "name": "xcom-shop.ru",
+      "product_count": 70
+    },
+    {
+      "name": "РЕДМОНД RU",
+      "product_count": 100
+    }
+  ],
+  "limit_per_shop": 100,
+  "last_attempt_at": "2026-11-03T07:58:18Z",
+  "last_error": {
+    "code": "missing_credentials"
+  },
+  "selection_report": null,
+  "last_attempt_report": {},
+  "refresh_mode": "snapshot"
+}
