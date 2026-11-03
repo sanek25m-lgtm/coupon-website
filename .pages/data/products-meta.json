@@ -2,12 +2,16 @@
   "schema_version": 1,
   "source": "admitad",
   "website_id": 3016388,
-  "imported_at": "2026-11-03T14:40:41Z",
-  "stock_verified_at": "2026-11-03T14:40:41Z",
+  "imported_at": "2026-11-03T14:58:39Z",
+  "stock_verified_at": "2026-11-03T14:58:39Z",
   "import_status": "ok",
   "stock_evidence_basis": "positive_signal_in_merchant_feed",
-  "product_count": 200,
+  "product_count": 300,
   "shops": [
+    {
+      "name": "Am Pm store RU",
+      "product_count": 100
+    },
     {
       "name": "xcom-shop.ru",
       "product_count": 100
@@ -18,7 +22,7 @@
     }
   ],
   "limit_per_shop": 100,
-  "last_attempt_at": "2026-11-03T14:40:41Z",
+  "last_attempt_at": "2026-11-03T14:58:39Z",
   "last_error": null,
   "selection_report": {
     "feeds_total": 23,
@@ -27,23 +31,23 @@
       {
         "name": "Am Pm store RU",
         "rows_read": 697,
-        "rejected_currency": 444,
+        "eligible_rows": 444,
         "rejected_stock": 253,
-        "unique_eligible": 0,
-        "selected": 0,
-        "excluded_by_limit": 0,
-        "below_limit_reason": "fewer_eligible_unique_products"
+        "unique_eligible": 444,
+        "selected": 100,
+        "excluded_by_limit": 344,
+        "below_limit_reason": null
       },
       {
         "name": "xcom-shop.ru",
-        "rows_read": 441437,
-        "eligible_rows": 429754,
-        "rejected_stock": 11675,
-        "duplicate_rows": 254237,
+        "rows_read": 441475,
+        "eligible_rows": 429788,
+        "rejected_stock": 11679,
+        "duplicate_rows": 254276,
         "rejected_fields_or_price": 8,
-        "unique_eligible": 175517,
+        "unique_eligible": 175512,
         "selected": 100,
-        "excluded_by_limit": 175417,
+        "excluded_by_limit": 175412,
         "below_limit_reason": null
       },
       {
@@ -64,23 +68,23 @@
       {
         "name": "Am Pm store RU",
         "rows_read": 697,
-        "rejected_currency": 444,
+        "eligible_rows": 444,
         "rejected_stock": 253,
-        "unique_eligible": 0,
-        "selected": 0,
-        "excluded_by_limit": 0,
-        "below_limit_reason": "fewer_eligible_unique_products"
+        "unique_eligible": 444,
+        "selected": 100,
+        "excluded_by_limit": 344,
+        "below_limit_reason": null
       },
       {
         "name": "xcom-shop.ru",
-        "rows_read": 441437,
-        "eligible_rows": 429754,
-        "rejected_stock": 11675,
-        "duplicate_rows": 254237,
+        "rows_read": 441475,
+        "eligible_rows": 429788,
+        "rejected_stock": 11679,
+        "duplicate_rows": 254276,
         "rejected_fields_or_price": 8,
-        "unique_eligible": 175517,
+        "unique_eligible": 175512,
         "selected": 100,
-        "excluded_by_limit": 175417,
+        "excluded_by_limit": 175412,
         "below_limit_reason": null
       },
       {
