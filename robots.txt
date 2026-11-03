@@ -8,3 +8,4 @@ Disallow: /server.py
 
 Sitemap: https://xn--80atjdccloe.art/sitemap.xml
 
+Sitemap: https://xn--80atjdccloe.art/sitemap-products.xml
