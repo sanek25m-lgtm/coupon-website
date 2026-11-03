@@ -2,19 +2,15 @@
   "schema_version": 1,
   "source": "admitad",
   "website_id": 3016388,
-  "imported_at": null,
-  "stock_verified_at": null,
-  "import_status": "error",
-  "stock_evidence_basis": null,
-  "product_count": 270,
+  "imported_at": "2026-11-03T14:40:41Z",
+  "stock_verified_at": "2026-11-03T14:40:41Z",
+  "import_status": "ok",
+  "stock_evidence_basis": "positive_signal_in_merchant_feed",
+  "product_count": 200,
   "shops": [
     {
-      "name": "Am Pm store RU",
-      "product_count": 100
-    },
-    {
       "name": "xcom-shop.ru",
-      "product_count": 70
+      "product_count": 100
     },
     {
       "name": "РЕДМОНД RU",
@@ -22,15 +18,80 @@
     }
   ],
   "limit_per_shop": 100,
-  "last_attempt_at": "2026-11-03T14:31:02Z",
-  "last_error": {
-    "code": "invalid_source_data"
+  "last_attempt_at": "2026-11-03T14:40:41Z",
+  "last_error": null,
+  "selection_report": {
+    "feeds_total": 23,
+    "feeds_succeeded": 23,
+    "shops": [
+      {
+        "name": "Am Pm store RU",
+        "rows_read": 697,
+        "rejected_currency": 444,
+        "rejected_stock": 253,
+        "unique_eligible": 0,
+        "selected": 0,
+        "excluded_by_limit": 0,
+        "below_limit_reason": "fewer_eligible_unique_products"
+      },
+      {
+        "name": "xcom-shop.ru",
+        "rows_read": 441437,
+        "eligible_rows": 429754,
+        "rejected_stock": 11675,
+        "duplicate_rows": 254237,
+        "rejected_fields_or_price": 8,
+        "unique_eligible": 175517,
+        "selected": 100,
+        "excluded_by_limit": 175417,
+        "below_limit_reason": null
+      },
+      {
+        "name": "РЕДМОНД RU",
+        "rows_read": 762,
+        "eligible_rows": 762,
+        "unique_eligible": 762,
+        "selected": 100,
+        "excluded_by_limit": 662,
+        "below_limit_reason": null
+      }
+    ]
   },
-  "selection_report": null,
   "last_attempt_report": {
-    "feeds_total": 0,
-    "feeds_succeeded": 0,
-    "shops": []
-  },
-  "refresh_mode": "snapshot"
+    "feeds_total": 23,
+    "feeds_succeeded": 23,
+    "shops": [
+      {
+        "name": "Am Pm store RU",
+        "rows_read": 697,
+        "rejected_currency": 444,
+        "rejected_stock": 253,
+        "unique_eligible": 0,
+        "selected": 0,
+        "excluded_by_limit": 0,
+        "below_limit_reason": "fewer_eligible_unique_products"
+      },
+      {
+        "name": "xcom-shop.ru",
+        "rows_read": 441437,
+        "eligible_rows": 429754,
+        "rejected_stock": 11675,
+        "duplicate_rows": 254237,
+        "rejected_fields_or_price": 8,
+        "unique_eligible": 175517,
+        "selected": 100,
+        "excluded_by_limit": 175417,
+        "below_limit_reason": null
+      },
+      {
+        "name": "РЕДМОНД RU",
+        "rows_read": 762,
+        "eligible_rows": 762,
+        "unique_eligible": 762,
+        "selected": 100,
+        "excluded_by_limit": 662,
+        "below_limit_reason": null
+      }
+    ]
+  }
 }
