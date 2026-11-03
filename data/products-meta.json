@@ -22,7 +22,7 @@
     }
   ],
   "limit_per_shop": 100,
-  "last_attempt_at": "2026-11-03T14:10:38Z",
+  "last_attempt_at": "2026-11-03T14:31:02Z",
   "last_error": {
     "code": "invalid_source_data"
   },
