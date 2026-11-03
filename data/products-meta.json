@@ -4,7 +4,7 @@
   "website_id": 3016388,
   "imported_at": null,
   "stock_verified_at": null,
-  "import_status": "saved_snapshot",
+  "import_status": "error",
   "stock_evidence_basis": null,
   "product_count": 270,
   "shops": [
@@ -22,11 +22,15 @@
     }
   ],
   "limit_per_shop": 100,
-  "last_attempt_at": "2026-11-03T07:58:18Z",
+  "last_attempt_at": "2026-11-03T14:10:38Z",
   "last_error": {
-    "code": "missing_credentials"
+    "code": "invalid_source_data"
   },
   "selection_report": null,
-  "last_attempt_report": {},
+  "last_attempt_report": {
+    "feeds_total": 0,
+    "feeds_succeeded": 0,
+    "shops": []
+  },
   "refresh_mode": "snapshot"
 }
