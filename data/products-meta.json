@@ -2,8 +2,8 @@
   "schema_version": 1,
   "source": "admitad",
   "website_id": 3016388,
-  "imported_at": "2026-11-03T14:58:39Z",
-  "stock_verified_at": "2026-11-03T14:58:39Z",
+  "imported_at": "2026-11-05T11:22:52Z",
+  "stock_verified_at": "2026-11-05T11:22:52Z",
   "import_status": "ok",
   "stock_evidence_basis": "positive_signal_in_merchant_feed",
   "product_count": 300,
@@ -22,7 +22,7 @@
     }
   ],
   "limit_per_shop": 100,
-  "last_attempt_at": "2026-11-03T14:58:39Z",
+  "last_attempt_at": "2026-11-05T11:22:52Z",
   "last_error": null,
   "selection_report": {
     "feeds_total": 23,
@@ -40,23 +40,23 @@
       },
       {
         "name": "xcom-shop.ru",
-        "rows_read": 441475,
-        "eligible_rows": 429788,
-        "rejected_stock": 11679,
-        "duplicate_rows": 254276,
+        "rows_read": 444578,
+        "eligible_rows": 432159,
+        "rejected_stock": 12411,
+        "duplicate_rows": 257379,
         "rejected_fields_or_price": 8,
-        "unique_eligible": 175512,
+        "unique_eligible": 174780,
         "selected": 100,
-        "excluded_by_limit": 175412,
+        "excluded_by_limit": 174680,
         "below_limit_reason": null
       },
       {
         "name": "РЕДМОНД RU",
-        "rows_read": 762,
-        "eligible_rows": 762,
-        "unique_eligible": 762,
+        "rows_read": 811,
+        "eligible_rows": 811,
+        "unique_eligible": 811,
         "selected": 100,
-        "excluded_by_limit": 662,
+        "excluded_by_limit": 711,
         "below_limit_reason": null
       }
     ]
@@ -77,23 +77,23 @@
       },
       {
         "name": "xcom-shop.ru",
-        "rows_read": 441475,
-        "eligible_rows": 429788,
-        "rejected_stock": 11679,
-        "duplicate_rows": 254276,
+        "rows_read": 444578,
+        "eligible_rows": 432159,
+        "rejected_stock": 12411,
+        "duplicate_rows": 257379,
         "rejected_fields_or_price": 8,
-        "unique_eligible": 175512,
+        "unique_eligible": 174780,
         "selected": 100,
-        "excluded_by_limit": 175412,
+        "excluded_by_limit": 174680,
         "below_limit_reason": null
       },
       {
         "name": "РЕДМОНД RU",
-        "rows_read": 762,
-        "eligible_rows": 762,
-        "unique_eligible": 762,
+        "rows_read": 811,
+        "eligible_rows": 811,
+        "unique_eligible": 811,
         "selected": 100,
-        "excluded_by_limit": 662,
+        "excluded_by_limit": 711,
         "below_limit_reason": null
       }
     ]
